@@ -1,0 +1,7 @@
+{
+  "name": "Lista Tarefas",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
