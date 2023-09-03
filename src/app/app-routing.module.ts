@@ -5,14 +5,6 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./pages/lista/lista.module').then(m => m.ListaPageModule)
-  },
-  {
-    path: 'edicao',
-    loadChildren: () => import('./pages/edicao/edicao.module').then( m => m.EdicaoPageModule)
-  },
-  {
-    path: 'delete',
-    loadChildren: () => import('./pages/delete/delete.module').then( m => m.DeletePageModule)
   }
 ];
 @NgModule({

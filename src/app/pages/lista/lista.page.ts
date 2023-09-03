@@ -41,18 +41,18 @@ export class ListaPage {
     });
   
     await alert.present();
-  } 
+  }
 
-  async editarItem() {
+  async editarItem(tarefa: Tarefa) {
     const alert = await this.alertController.create({
-      header: 'Editar Item',
+      header: 'Editar Tarefa',
       inputs: [
         {
           name: 'newName',
           type: 'text',
           placeholder: 'Novo Nome',
+          value: tarefa.descricao,
         },
-
       ],
       buttons: [
         {
@@ -63,20 +63,21 @@ export class ListaPage {
         {
           text: 'Salvar',
           handler: (data) => {
-            const newName = data.newName; 
+            tarefa.descricao = data.newName;
           },
         },
       ],
     });
   
     await alert.present();
+  }
+  
+  
 
-  }  
-
-  async comfirmarDelete() {
+  async comfirmarDelete(tarefa: Tarefa) {
     const alert = await this.alertController.create({
-      header: 'Excluir',
-      message: 'Tem certeza de que deseja excluir este item?',
+      header: 'Excluir Tarefa',
+      message: `Tem certeza de que deseja excluir a tarefa "${tarefa.descricao}"?`,
       buttons: [
         {
           text: 'Cancelar',
@@ -86,6 +87,10 @@ export class ListaPage {
         {
           text: 'Excluir',
           handler: () => {
+            const index = this.tarefas.indexOf(tarefa);
+            if (index !== -1) {
+              this.tarefas.splice(index, 1);
+            }
           },
         },
       ],
@@ -93,4 +98,5 @@ export class ListaPage {
   
     await alert.present();
   }
+  
 }
