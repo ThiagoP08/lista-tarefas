@@ -27,29 +27,27 @@
     </ion-item>
 
     <ion-item-sliding *ngFor="let tarefa of tarefas">
-        <ion-item>
-          <ion-label> {{tarefa.descricao}} </ion-label>
-          
-          <ion-segment-button (click)="check(tarefa)">
-            <ion-icon [name]="tarefa.status ? 'radio-button-on' : 'radio-button-off' " ></ion-icon>
-          </ion-segment-button>
+  <ion-item>
+    <ion-label [class.concluida]="tarefa.status"> {{tarefa.descricao}}</ion-label>
+    
+    <ion-segment-button (click)="check(tarefa)">
+      <ion-icon [name]="tarefa.status ? 'radio-button-on' : 'radio-button-off' " ></ion-icon>
+    </ion-segment-button>
+  </ion-item>
 
-        </ion-item>
-     
+  <ion-item-options side="start">
+    <ion-item-option color="warning" (click)="editarItem(tarefa)">
+      <ion-icon name="pencil"></ion-icon>
+    </ion-item-option>
+  </ion-item-options>
 
-      <ion-item-options side="start">
-        <ion-item-option color="warning" (click)="editarItem(tarefa)">
-          <ion-icon name="pencil"></ion-icon>
-        </ion-item-option>
-      </ion-item-options>      
+  <ion-item-options side="end">
+    <ion-item-option color="danger" (click)="apagarItem(tarefa)">
+      <ion-icon name="trash"></ion-icon>
+    </ion-item-option>
+  </ion-item-options>
+</ion-item-sliding>
 
-      <ion-item-options side="end">
-        <ion-item-option color="danger" (click)="apagarItem(tarefa)">
-          <ion-icon name="trash"></ion-icon>
-        </ion-item-option>
-      </ion-item-options>
-      
-    </ion-item-sliding>
 
     <!-- <ion-item *ngFor="let tarefa of tarefas">
       <ion-label>{{ tarefa.nome }}</ion-label>

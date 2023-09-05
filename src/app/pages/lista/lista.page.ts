@@ -29,22 +29,37 @@ export class ListaPage {
       buttons: [
         {
           text: 'Cancelar',
-          handler: () => {console.log('Criação de tarefa cancelada');},
+          handler: () => {
+            console.log('Criação de tarefa cancelada');
+          },
         },
         {
           text: 'Adicionar',
           handler: (form) => {
-            let obj = {id: this.getId(this.tarefas),descricao: form.task, status: false};
-            this.tarefas.push(obj);
-
-            console.log('id' + obj.id)
-          }
-        }
-      ]
+            this.atualizarDados(form);
+            
+          },
+        },
+      ],
     });
   
     await alert.present();
   }
+
+  atualizarDados(form: any){
+    const descricao = form.task.trim();
+    if (descricao !== '') {
+      let obj = { id: this.getId(this.tarefas), descricao: descricao, status: false };
+      this.tarefas.push(obj);
+      console.log('id' + obj.id);
+      this.mostrarNotificacao('Tarefa foi adicionada com sucesso');
+    } else {
+      this.mostrarNotificacao('A descrição da tarefa não pode estar vazia');
+    }
+
+    localStorage.setItem('TarefasDB', JSON.stringify(this.tarefas))
+  }
+  
 
   // async criarNovaTarefa() {
   //   const alert = await this.alertController.create({
