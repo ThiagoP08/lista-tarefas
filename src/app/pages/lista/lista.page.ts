@@ -14,7 +14,18 @@ export class ListaPage {
 
   ];
 
-  constructor(private alertController: AlertController, private toastController: ToastController) { }
+  constructor(private alertController: AlertController, private toastController: ToastController) {
+
+    this.carregarDadosDoLocalStorage();
+  }
+
+  carregarDadosDoLocalStorage() {
+    const dados = localStorage.getItem('TarefasDB');
+
+    if (dados) {
+      this.tarefas = JSON.parse(dados);
+    }
+  }
 
   async criarNovaTarefa() {
     const alert = await this.alertController.create({
@@ -57,7 +68,7 @@ export class ListaPage {
       this.mostrarNotificacao('A descrição da tarefa não pode estar vazia');
     }
 
-    localStorage.setItem('TarefasDB', JSON.stringify(this.tarefas))
+    localStorage.setItem('TarefasDB', JSON.stringify(this.tarefas));
   }
   
 
