@@ -16,10 +16,9 @@ export class ListaPage {
 
   constructor(private alertController: AlertController, private toastController: ToastController) {
 
-    this.carregarDadosDoLocalStorage();
+    this.carregarDados();
   }
-
-  carregarDadosDoLocalStorage() {
+  carregarDados() {
     const dados = localStorage.getItem('TarefasDB');
 
     if (dados) {
@@ -135,6 +134,7 @@ export class ListaPage {
           text: 'Salvar',
           handler: (data) => {
             tarefa.descricao = data.newName;
+            localStorage.setItem('TarefasDB', JSON.stringify(this.tarefas));
           },
         },
       ],
@@ -160,6 +160,7 @@ export class ListaPage {
             if (excluir !== -1) {
               this.tarefas.splice(excluir, 1);
               this.mostrarNotificacao('Tarefa excluída com sucesso');
+              // localStorage.removeItem('TarefasDB');
             }
           },
         },
