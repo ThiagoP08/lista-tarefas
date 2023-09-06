@@ -160,7 +160,7 @@ export class ListaPage {
             if (excluir !== -1) {
               this.tarefas.splice(excluir, 1);
               this.mostrarNotificacao('Tarefa excluída com sucesso');
-              // localStorage.removeItem('TarefasDB');
+              localStorage.removeItem('TarefasDB');
             }
           },
         },
